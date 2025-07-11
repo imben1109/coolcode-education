@@ -4,6 +4,7 @@ import org.apache.hc.client5.http.impl.classic.HttpClients
 import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManagerBuilder
 import org.apache.hc.client5.http.ssl.SSLConnectionSocketFactory;
 import org.apache.hc.core5.ssl.SSLContexts
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.boot.ssl.SslBundles
 import org.springframework.boot.web.client.RestTemplateBuilder
 import org.springframework.context.annotation.Bean
@@ -16,13 +17,13 @@ import java.security.cert.X509Certificate
 @Configuration
 class AppConfig {
     // Secure client to api.crazy-collectors.com
-    @Bean
+    @ConditionalOnProperty(prefix = "clients.crazy-collectors", name = ["enabled"], havingValue = "true", matchIfMissing = true)
     fun crazyCollectorsClient(restTemplateBuilder: RestTemplateBuilder, sslBundles: SslBundles): RestClient {
         return RestClient.create(restTemplateBuilder.setSslBundle(sslBundles.getBundle("crazy-collectors")).build())
     }
 
-    // Secure client to herokuapp.com
-    @Bean
+//     Secure client to herokuapp.com
+    @ConditionalOnProperty(prefix = "clients.heroku", name = ["enabled"], havingValue = "true", matchIfMissing = true)
     fun herokuClient(restTemplateBuilder: RestTemplateBuilder, sslBundles: SslBundles): RestClient {
         return RestClient.create(restTemplateBuilder.setSslBundle(sslBundles.getBundle("heroku")).build())
     }
