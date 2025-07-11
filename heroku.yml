@@ -1,0 +1,5 @@
+build:
+  docker:
+    api: back-end/Dockerfile
+    ui: ui/Dockerfile
+    instruction: instruction/Dockerfile

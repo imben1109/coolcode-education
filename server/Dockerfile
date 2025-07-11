@@ -1,17 +1,13 @@
-FROM openjdk:17-oracle
+FROM openjdk:17-jdk-alpine
 
-ENV APP_ENV "docker"
-ENV MSSQL_URL "url-to-override"
-ENV MSSQL_USERNAME "username-to-override"
-ENV MSSQL_PASSWORD "password-to-override"
-ENV KEYSTORE_PATH "path-to-override"
-ENV KEYSTORE_PASSWORD "password-to-override"
-ENV DISCORD_COOLCODEHACKER_TOKEN "token-to-override"
-ENV DISCORD_COOLCODEHACKER_CHANNEL_ID "channel-id-to-override"
+# Set the working directory inside the container
+WORKDIR /app
 
-RUN mkdir app
-COPY ./build/libs/*.jar app
-WORKDIR app
+# Copy the Gradle build files and application code to the container
+COPY build/libs/server-0.0.1-SNAPSHOT.jar app.jar
 
+# Expose the port the application will run on
 EXPOSE 9443
-ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=${APP_ENV}", "server-0.0.9.jar"]
+
+# Run the application
+ENTRYPOINT ["java", "-jar", "app.jar"]
