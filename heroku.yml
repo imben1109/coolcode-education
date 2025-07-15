@@ -1,5 +1,9 @@
 build:
   docker:
-    api: back-end/Dockerfile
+    api: server/Dockerfile
     ui: ui/Dockerfile
     instruction: instruction/Dockerfile
+
+run:
+  api: npm start
+  ui: npm start
