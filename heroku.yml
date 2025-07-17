@@ -5,5 +5,6 @@ build:
     instruction: instruction/Dockerfile
 
 run:
-  api: npm start
+  instruction: npm start
   ui: npm start
+  server: npm start
