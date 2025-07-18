@@ -8,7 +8,7 @@ COPY . .
 RUN ./gradlew build
 
 # Copy the Gradle build files and application code to the container
-COPY build/libs/server-0.0.9.jar app.jar
+COPY ./build/libs/server-0.0.9.jar ./app.jar
 
 # Expose the port the application will run on
 EXPOSE 9443
