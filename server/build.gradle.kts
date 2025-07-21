@@ -34,8 +34,7 @@ dependencies {
 
     implementation("io.jsonwebtoken:jjwt:0.2")
 
-    runtimeOnly("com.microsoft.sqlserver:mssql-jdbc")
-
+    runtimeOnly("org.mariadb.jdbc:mariadb-java-client:3.1.4")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.mockk:mockk:1.13.11")
 }
