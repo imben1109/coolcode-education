@@ -1,5 +1,5 @@
 build:
   docker:
     api: server/Dockerfile
-    ui: ui/Dockerfile
+    web: ui/Dockerfile
     instruction: instruction/Dockerfile
