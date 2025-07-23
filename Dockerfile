@@ -35,7 +35,8 @@ COPY --from=ui-build /app/ui/build /app/ui/build
 COPY --from=instruction-build /app/instruction /app/instruction
 
 # Copy Nginx configuration
-COPY proxy/nginx.conf /etc/nginx/conf.d/default.conf
+COPY proxy/nginx.conf /etc/nginx/conf.d/default.conf.template
+CMD /bin/sh -c "export PORT=${PORT:-8081} && envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf"
 
 # Install dependencies for instruction
 WORKDIR /app/instruction
