@@ -2,11 +2,10 @@
 FROM openjdk:17-jdk-slim as base
 
 # Set working directory
-WORKDIR /app
+WORKDIR /app/server
 
 # Copy and build the API
 COPY server /app/server
-WORKDIR /app/server
 RUN ./gradlew build
 
 # Copy and build the UI
@@ -23,10 +22,14 @@ RUN npm install
 
 # Final image
 FROM nginx:alpine
+
+# Install OpenJDK and Node.js with npm and process manager
+RUN apk add --no-cache openjdk17 nodejs npm supervisor
+
 WORKDIR /app
 
 # Copy built artifacts
-COPY --from=base /app/server/build/libs/server-0.0.1-SNAPSHOT.jar /app/server.jar
+COPY --from=base /app/server/build/libs/server-0.0.9.jar /app/server.jar
 COPY --from=ui-build /app/ui/build /app/ui/build
 COPY --from=instruction-build /app/instruction /app/instruction
 
@@ -37,14 +40,11 @@ COPY proxy/nginx.conf /etc/nginx/conf.d/default.conf
 WORKDIR /app/instruction
 RUN npm install --production
 
-# Install a process manager
-RUN apk add --no-cache supervisor openjdk17
-
 # Add supervisord configuration
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Expose the ports
-EXPOSE 80 8080 3000 3001
+EXPOSE 8081 8080 3000 3001
 
 # Start all services
 CMD ["supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
