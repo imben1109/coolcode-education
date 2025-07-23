@@ -46,7 +46,7 @@ RUN npm install --production
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Expose the ports
-EXPOSE 8081 8080 3000 3001
+EXPOSE 8081 9443 3000 3001
 
 # Start all services
 CMD ["supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
