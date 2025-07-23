@@ -12,7 +12,8 @@ spring:
 
 server:
   port: 9443
-
+  servlet:
+    context-path: /api
 
 discord:
   coolcodehacker:

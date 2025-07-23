@@ -18,6 +18,7 @@ RUN npm install && npm run build
 FROM node:18-alpine as instruction-build
 WORKDIR /app/instruction
 COPY instruction /app/instruction
+ENV NEXT_PUBLIC_API_URL=/api
 RUN npm install
 RUN npm run build
 
