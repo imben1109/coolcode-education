@@ -18,7 +18,7 @@ const Authenticated = ({ children }: { children: JSX.Element }) => {
 
 const Root = () => {
   return (
-    <BrowserRouter basename="/web">
+    <BrowserRouter basename="/ui">
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route
