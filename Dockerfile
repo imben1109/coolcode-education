@@ -19,6 +19,7 @@ FROM node:18-alpine as instruction-build
 WORKDIR /app/instruction
 COPY instruction /app/instruction
 RUN npm install
+RUN npm run build
 
 # Final image
 FROM nginx:alpine
