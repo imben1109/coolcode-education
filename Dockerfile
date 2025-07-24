@@ -12,6 +12,7 @@ RUN ./gradlew build
 FROM node:18-alpine as ui-build
 WORKDIR /app/ui
 COPY ui /app/ui
+ENV REACT_APP_API_URL=/api
 RUN npm install && npm run build
 
 # Copy and build the Instruction service
