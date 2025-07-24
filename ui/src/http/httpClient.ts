@@ -1,6 +1,6 @@
 import { StorageKey } from "../constant/localStorage";
 
-const BASE_URL = process.env.REACT_APP_API_URL ?? "http://localhost:9443";
+const BASE_URL = process.env.REACT_APP_API_URL ?? "http://localhost:9443/api";
 
 const isJson = (str: string) => {
   try {

@@ -22,7 +22,7 @@ const ChangePasswordModal = () => {
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
-  const [stage, setStage] = useState<1 | 2>(1);
+  const [stage, setStage] = useState<1 | 2>(2);
   const { validatePassword, validating } = useValidatePassword();
   const { changePassword, changing } = useChangePassword();
   const [errors, setErrors] = useState<Errors>({ ...initialErrors });

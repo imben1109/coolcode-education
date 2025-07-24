@@ -2,9 +2,9 @@ spring:
   application:
     name: server
   datasource:
-    url: ${JDBC_DATABASE_URL}
-    username: ${JDBC_DATABASE_USERNAME}
-    password: ${JDBC_DATABASE_PASSWORD}
+    url: jdbc:mariadb://host.docker.internal:3306/YourDatabaseName
+    username: YourUsername
+    password: YourPassword
   jpa:
     hibernate:
       ddl-auto: update

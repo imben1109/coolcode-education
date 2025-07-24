@@ -100,7 +100,8 @@ const Body = () => {
               title="Hack CoolCode Education"
               instructions={[
                 "CoolCode Education is a platform for students interested in programming. Students can examine their programming skills by finishing the assignments created by CoolCode mentors.",
-                "The website is at\nhttps://jolly-coast-00af64000.5.azurestaticapps.net",
+                `The website is at`,
+                <a href={`${window.location.origin}/ui`} target="_blank">{window.location.origin}/ui</a>,
                 "Your hacking task is to help your peer who is poor at programming to get full score at every assignment.",
                 "Instructions will be given based on your progress.",
               ]}
@@ -117,7 +118,8 @@ const Body = () => {
               subtitle="Pre Requisites"
               title="Expose an API"
               instructions={[
-                "You need to expose an API at your server:\nPOST {your server URL}/coolcodehack",
+                "You need to expose an API at your server:",
+                `POST ${window.location.origin}/api/coolcodehack`,
                 "It should return a payload containing your username and password, which are used to start this challenge.",
                 'The response should follow the below format:\n{\n\t"username": "{your username}",\n\t"password": "{your password}"\n}',
                 "This API is required to evaluate and upload the score of this challenge.",
@@ -133,7 +135,7 @@ const Body = () => {
                   ? [
                       "You have started the challenge.",
                       "Use the username and password to sign in at CoolCode:",
-                      "https://jolly-coast-00af64000.5.azurestaticapps.net",
+                      `${window.location.origin}/ui`,
                     ]
                   : [
                       "Input your username and password to start the challenge.",
@@ -161,7 +163,8 @@ const Body = () => {
                   title={`Help Your Peer${instruction2TitleSuffix()}`}
                   instructions={[
                     "Your peer got really bad grade at all assignments. Explore the CoolCode website and try to override the scores for your peer. (This counts for 60% of the challenge score)",
-                    "The API mentors use to upload scores is:\nPOST https://api.crazy-collectors.com/coolcode/api/assignment/score",
+                    "The API mentors use to upload scores is:",
+                    `POST ${window.location.origin}/api/coolcodehack/score`,
                     'And the request body to this API is with the below format:\n{\n\t"username": {student\'s username as string},\n\t"assignmentId": {assignment\'s ID as a number},\n\t"score": {score as a number}\n}',
                     ...hints,
                   ]}

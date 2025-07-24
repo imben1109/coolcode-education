@@ -1,10 +1,10 @@
 import Text from "@/components/Text";
-import React from "react";
+import React, { ReactNode } from "react";
 
 interface InstructionProps {
   subtitle: string;
   title: string;
-  instructions: string[];
+  instructions: ReactNode[];
 }
 
 const Instruction: React.FC<InstructionProps> = ({
