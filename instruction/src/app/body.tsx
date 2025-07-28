@@ -18,7 +18,7 @@ const Body = () => {
   const [url, setUrl] = useState('');
 
   useEffect(() => {
-    setUrl(window.location.href);
+    setUrl(window.location.origin);
   }, []);
 
 
