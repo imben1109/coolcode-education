@@ -108,7 +108,7 @@ const Body = () => {
               instructions={[
                 "CoolCode Education is a platform for students interested in programming. Students can examine their programming skills by finishing the assignments created by CoolCode mentors.",
                 `The website is at`,
-                <a key="somekey1" href={`${url}/ui`} target="_blank">{url}/ui</a>,
+                <a key="somekey1" href={`${url}/ui/`} target="_blank">{url}/ui</a>,
                 "Your hacking task is to help your peer who is poor at programming to get full score at every assignment.",
                 "Instructions will be given based on your progress.",
               ]}

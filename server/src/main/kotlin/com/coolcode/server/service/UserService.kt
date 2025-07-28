@@ -86,6 +86,7 @@ class UserService(
             updatedAt = now,
         ))
         logger.info("User created for ${request.username}")
+        assignmentService.initAssignment()
         initializeChallengeProgress(user)
         createPeerAndMentor(user)
         return user

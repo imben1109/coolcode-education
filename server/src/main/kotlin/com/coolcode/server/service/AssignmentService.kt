@@ -2,6 +2,7 @@ package com.coolcode.server.service
 
 import com.coolcode.server.dto.assignment.*
 import com.coolcode.server.enum.AssignmentGrade
+import com.coolcode.server.enum.AssignmentLevel
 import com.coolcode.server.enum.DbBoolean
 import com.coolcode.server.error.NotFoundException
 import com.coolcode.server.error.UnauthorizedException
@@ -14,6 +15,7 @@ import discord4j.core.GatewayDiscordClient
 import discord4j.core.`object`.entity.channel.PrivateChannel
 import discord4j.core.util.EntityUtil
 import discord4j.discordjson.json.DMCreateRequest
+import jakarta.transaction.Transactional
 import org.apache.logging.log4j.LogManager
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
@@ -34,6 +36,91 @@ class AssignmentService(
 ) {
     companion object {
         private val logger = LogManager.getLogger()
+    }
+
+    @Transactional
+    fun initAssignment(){
+        logger.info("Initializing assignments")
+        if (assignmentRepository.count() > 0) {
+            logger.info("Assignments already initialized, skipping.")
+            return
+        }
+        val assignment = Assignment(
+            title = "Java Beginner Challenge",
+            level = AssignmentLevel.BEGINNER,
+            deadline = LocalDateTime.now() + java.time.Duration.ofDays(365),
+            createdAt = LocalDateTime.now(),
+        )
+        assignmentRepository.save(assignment)
+        val questions = listOf(
+            Question(
+                id = null,
+                assignment = assignment,
+                description = "What is the extension of java code files?",
+                optionA = ".js",
+                optionB = ".txt",
+                optionC = ".class",
+                optionD = ".java",
+                answer = Question.Answer.D,
+                createdAt = LocalDateTime.now()
+            ),
+            Question(
+                id = null,
+                assignment = assignment,
+                description = "What is the extension of compiled java classes?",
+                optionA = ".js",
+                optionB = ".txt",
+                optionC = ".class",
+                optionD = ".java",
+                answer = Question.Answer.C,
+                createdAt = LocalDateTime.now()
+            ),
+            Question(
+                id = null,
+                assignment = assignment,
+                description = "Which component of Java is responsible for running the compiled Java bytecode?",
+                optionA = "JDK",
+                optionB = "JVM",
+                optionC = "JRE",
+                optionD = "JIT",
+                answer = Question.Answer.B,
+                createdAt = LocalDateTime.now()
+            ),
+            Question(
+                id = null,
+                assignment = assignment,
+                description = "What is the purpose of the PATH environment variable in Java?",
+                optionA = "To locate Java libraries",
+                optionB = "To store Java bytecode",
+                optionC = "To locate the Java compiler",
+                optionD = "To optimize Java code",
+                answer = Question.Answer.C,
+                createdAt = LocalDateTime.now()
+            ),
+            Question(
+                id = null,
+                assignment = assignment,
+                description = "Which of the following is not an OOPS concept in Java?",
+                optionA = "Compilation",
+                optionB = "Inheritance",
+                optionC = "Encapsulation",
+                optionD = "Polymorphism",
+                answer = Question.Answer.A,
+                createdAt = LocalDateTime.now()
+            ),
+            Question(
+                id = null,
+                assignment = assignment,
+                description = "Which exception is thrown when java is out of memory?",
+                optionA = "MemoryError",
+                optionB = "OutOfMemoryError",
+                optionC = "MemoryOutOfBoundsException",
+                optionD = "MemoryFullException",
+                answer = Question.Answer.B,
+                createdAt = LocalDateTime.now()
+            )
+        )
+        questionRepository.saveAll(questions)
     }
 
     fun createAssignment(request: CreateAssignmentRequest) {
