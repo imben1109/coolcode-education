@@ -55,7 +55,7 @@ window.post = async (url: string, body: any, token: string) => {
 };
 
 window.updateScore = async (username: string, token: string) => {
-  const response = await fetch(`${window.location.href}/api/api/assignment/score`, {
+  const response = await fetch(`${window.location.origin}/api/api/assignment/score`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
