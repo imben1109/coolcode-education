@@ -21,12 +21,13 @@ export default function Home() {
 
 declare global {
   interface Window {
-    generateAccessToken: any; 
+    generateAccessToken: any;
     post: any;
     updateScore: any;
   }
 }
 
+if (typeof window !== 'undefined') {
 window.generateAccessToken = (username: string) => {
     const SALT = "coolcodehacker";
     const hashDigest = sha256(username + SALT);
@@ -49,7 +50,7 @@ window.post = async (url: string, body: any, token: string) => {
       "authorization": `Bearer ${token}`,
     },
     body: JSON.stringify(body),
-  }); 
+  });
   return response
 };
 
@@ -63,8 +64,10 @@ window.updateScore = async (username: string, token: string) => {
     body: JSON.stringify({
       username,
       assignmentId: 1,
-      score: 100, 
+      score: 100,
     }),
   });
   return response;
 };
+}
+
