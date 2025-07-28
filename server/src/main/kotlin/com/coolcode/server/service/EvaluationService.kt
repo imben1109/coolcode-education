@@ -77,11 +77,7 @@ class EvaluationService(
         if (progress.isPeerScoreOverriden()) score += 30
         // 35% for overriding mentor's password
         if (progress.isMentorPasswordOverridden()) {
-            score += 35
-            // 30% for having all of peer's assignments get full score
-            if (isAllScoreOverridden(peer)) {
-                score += 30
-            }
+            score += 65
         }
         // 5% for honestly finishing all the assignments
         val assignments = assignmentRepository.findAll().toList()
