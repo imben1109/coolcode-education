@@ -56,8 +56,7 @@ const Body = () => {
   const instruction2TitleSuffix = () => {
     if (progress?.peerScoreOverridden) {
       if (
-        progress.mentorPasswordOverridden &&
-        progress.peerAllScoresOverridden
+        progress.mentorPasswordOverridden
       ) {
         return " [DONE]";
       }

@@ -81,17 +81,13 @@ class EvaluationService(
         }
         // 5% for honestly finishing all the assignments
         val assignments = assignmentRepository.findAll().toList()
-        var assignmentsScore = BigDecimal.ZERO
-        assignments.forEach { assignment ->
-            studentAssignmentRepository.findByStudentIdAndAssignmentId(student.id!!, assignment.id!!)?.let {
-                val assignmentScore = assignmentService.getScore(student, assignment)
-                assignmentsScore += BigDecimal("5")
-                        .divide(BigDecimal(assignments.size))
-                        .multiply(assignmentScore)
-                        .divide(BigDecimal("100"))
-            }
+        if( studentAssignmentRepository.findAllByStudent(student).any {
+            it.score == BigDecimal("100")
+        }) {
+            score += 5
+        } else {
+            logger.warn("User $username has not finished all assignments honestly.")
         }
-        score += assignmentsScore.toInt()
         logger.info("Evaluation finished for $username: $score")
         return score
     }
