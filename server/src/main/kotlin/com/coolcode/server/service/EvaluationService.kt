@@ -41,7 +41,6 @@ class EvaluationService(
     fun startEvaluation(request: EvaluationRequest) {
         try {
             logger.info("Starting evaluation of ${request.teamUrl}")
-            // TODO: Require password encryption with randomly generated key
             val result = restClient.post()
                 .uri("${request.teamUrl}/coolcodehack")
                 .contentType(APPLICATION_JSON)
@@ -66,9 +65,6 @@ class EvaluationService(
         if (!student.isChallenger()) {
             throw ValidationException("User $username is not a challenger.")
         }
-        val peer = student.peer ?: run {
-            throw ValidationException("User $username has no peer.")
-        }
         val progress = challengeProgressRepository.findByChallenger(student)
             ?: throw NotFoundException("Challenge progress is not initiated for $username.")
         logger.info("Starting evaluation for $username")
@@ -80,13 +76,13 @@ class EvaluationService(
             score += 65
         }
         // 5% for honestly finishing all the assignments
-        val assignments = assignmentRepository.findAll().toList()
-        if( studentAssignmentRepository.findAllByStudent(student).any {
-            it.score == BigDecimal("100")
+        val studentAssignments = studentAssignmentRepository.findAllByStudent(student)
+        if( studentAssignments.any {
+            it.score?.compareTo(BigDecimal("100")) == 0
         }) {
             score += 5
         } else {
-            logger.warn("User $username has not finished all assignments honestly.")
+            logger.warn("User $username has not finished all assignments honestly. score: ${studentAssignments.map { it.score }.joinToString(",")}")
         }
         logger.info("Evaluation finished for $username: $score")
         return score
