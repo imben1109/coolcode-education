@@ -34,22 +34,22 @@ const Body = () => {
       // < 6 hrs
       return [
         "HINT 1: Make use of Network & Sources from the browser dev tools.",
-        "HINT 2: Have you heard about JWT auth?",
+        "HINT 2: Have you heard about bearer token?",
       ];
     }
     if (challengeDuration < 32400000) {
       // < 9 hrs
       return [
         "HINT 1: Make use of Network & Sources from the browser dev tools.",
-        "HINT 2: Have you heard about JWT auth? Check the header of the request at Network.",
-        "HINT 3: Guess where and how that JWT is generated?",
+        "HINT 2: Have you heard about bearer token? Check the header of the request at Network.",
+        "HINT 3: Guess where and how that bearer token is generated?",
       ];
     }
     // > 9 hrs
     return [
       "HINT 1: Make use of Network & Sources from the browser dev tools.",
-      "HINT 2: Have you heard about JWT auth? Look at the header of the request at Network.",
-      "HINT 3: Guess where and how that JWT token is generated? Check the JS code at Sources.",
+      "HINT 2: Have you heard about bearer token? Look at the header of the request at Network.",
+      "HINT 3: Then token is a Base64-encoded token containing the username and a SHA-256 hash of the username combined with a salt ('coolcodehacker'). You can call generateAccessToken in the dev tools",
     ];
   }, [progress]);
 
@@ -119,19 +119,6 @@ const Body = () => {
               }}
             />
           </div>
-          <div className="pre w-full px-[10px]">
-            <Instruction
-              subtitle="Pre Requisites"
-              title="Expose an API"
-              instructions={[
-                "You need to expose an API at your server:",
-                `POST ${url}/api/coolcodehack`,
-                "It should return a payload containing your username and password, which are used to start this challenge.",
-                'The response should follow the below format:\n{\n\t"username": "{your username}",\n\t"password": "{your password}"\n}',
-                "This API is required to evaluate and upload the score of this challenge.",
-              ]}
-            />
-          </div>
           <div className="start w-full px-[10px]">
             <Instruction
               subtitle="Instruction 1"
@@ -170,7 +157,7 @@ const Body = () => {
                   instructions={[
                     "Your peer got really bad grade at all assignments. Explore the CoolCode website and try to override the scores for your peer. (This counts for 60% of the challenge score)",
                     "The API mentors use to upload scores is:",
-                    `POST ${url}/api/coolcodehack/score`,
+                    `POST ${url}/api/api/assignment/score`,
                     'And the request body to this API is with the below format:\n{\n\t"username": {student\'s username as string},\n\t"assignmentId": {assignment\'s ID as a number},\n\t"score": {score as a number}\n}',
                     ...hints,
                   ]}
