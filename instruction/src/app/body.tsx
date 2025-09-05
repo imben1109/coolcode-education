@@ -100,6 +100,17 @@ const Body = () => {
               }}
             />
           </div>
+          <div className="start w-full px-[10px]">
+            <Instruction
+              subtitle="Challenge teams chat rooms"
+              title="Teams Link"
+              instructions={[
+                <a key="teamlink" href={`https://teams.microsoft.com/l/meetup-join/19%3ameeting_N2ZlYTc3NzgtM2Y3Ny00NDk2LTlhZWEtOWVkZDgyMTEzMzZh%40thread.v2/0?context=%7b%22Tid%22%3a%22fb6ea403-7cf1-4905-810a-fe5547e98204%22%2c%22Oid%22%3a%22fd3f50c9-56c1-4a3f-b2ca-463e61077e37%22%7d`} target="_blank">Join the meeting now</a>,
+                "Meeting ID: 387 679 901 316 8",
+                "Passcode: Ha2yW63N",
+              ]}
+            />
+          </div>
           <div className="mission w-full px-[10px] flex sm:flex-row flex-col items-center gap-[30px]">
             <Instruction
               subtitle="Mission"
