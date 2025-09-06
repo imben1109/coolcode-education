@@ -22,5 +22,5 @@ discord:
     channel:
 
 app:
-  coordinator-auth-token:
+  coordinator-auth-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjb2RlaXRzdWlzc2UyMDIyQGdtYWlsLmNvbSIsImV4cCI6MTc2MTg2ODgwMH0.8KGapch9T2AZ7Hcvzz5EHv5fSYo1sjuTwGsbSrDIJHi-hAdAfpf_qw4-bqKRs_1NO1xwCQNwkJ98UEJ6fHeAiQ
   instruction-url:
