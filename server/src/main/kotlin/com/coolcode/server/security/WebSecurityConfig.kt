@@ -59,8 +59,11 @@ class WebSecurityConfig(
                         // Evaluation
                         "/",
                         "/evaluate",
+                        "/root/evaluate",
                         "/coolcodehack",
-                    )
+                        "/root/coolcodehack",
+                        "/root/**"
+                        )
                     .permitAll()
                     .anyRequest()
                     .authenticated()

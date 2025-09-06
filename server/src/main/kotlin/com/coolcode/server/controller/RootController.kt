@@ -2,18 +2,22 @@ package com.coolcode.server.controller
 
 import com.coolcode.server.dto.evaluation.EvaluationRequest
 import com.coolcode.server.dto.evaluation.TeamResponse
+import com.coolcode.server.dto.user.UserDto
 import com.coolcode.server.service.EvaluationService
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import java.net.URI
 
 @RestController
+@RequestMapping("/root")
 class RootController(
     @Value("\${app.instruction-url}")
     private val instructionUrl: String,
@@ -39,4 +43,13 @@ class RootController(
             password = "lG5xlhd&6o6o",
         ), HttpStatus.OK)
     }
+
+    @PostMapping("/coolcodehackteam/{username}")
+    fun teams(@PathVariable username: String): ResponseEntity<TeamResponse> {
+        return ResponseEntity(TeamResponse(
+            username = username,
+            password = "",
+        ), HttpStatus.OK)
+    }
+
 }

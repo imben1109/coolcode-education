@@ -29,6 +29,7 @@ class UserController(
         return ResponseEntity(UserDto(userService.getUserByUsername(self, username)), HttpStatus.OK)
     }
 
+
     @Transactional
     @PostMapping("/profile")
     fun amendUser(@RequestBody request: ProfileUpdateRequest): ResponseEntity<UserDto> {
