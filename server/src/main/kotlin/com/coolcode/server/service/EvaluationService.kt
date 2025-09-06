@@ -42,11 +42,10 @@ class EvaluationService(
         try {
             logger.info("Starting evaluation of ${request.teamUrl}")
             val result = restClient.post()
-                .uri("${request.teamUrl}/coolcodehack")
+                .uri("${request.teamUrl}")
                 .contentType(APPLICATION_JSON)
                 .retrieve()
                 .body(TeamResponse::class.java) ?: throw NotFoundException("Failed to get result from ${request.teamUrl}")
-            authenticationManager.authenticate(UsernamePasswordAuthenticationToken(result.username, result.password))
             val score = evaluate(result.username)
             notifyCoordinator(request, score, getProgress(result.username))
             logger.info("Finished evaluation of ${request.teamUrl}")

@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController
 import java.net.URI
 
 @RestController
-@RequestMapping("/root")
 class RootController(
     @Value("\${app.instruction-url}")
     private val instructionUrl: String,
