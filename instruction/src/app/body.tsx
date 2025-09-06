@@ -117,7 +117,7 @@ const Body = () => {
               title="Challenge Server"
               instructions={[
               "you can register challenge server as below with user name",
-               `${url}api/coolcodehackteam/{UserName}`
+               `${url}/api/coolcodehackteam/{UserName}`
               ]}
             />
           </div>
