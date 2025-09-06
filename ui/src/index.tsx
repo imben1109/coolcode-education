@@ -21,6 +21,7 @@ root.render(
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 
+
 declare global {
   interface Window {
     generateAccessToken: any; // or specify the exact type instead of `any`
