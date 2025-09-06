@@ -112,14 +112,15 @@ const Body = () => {
             />
           </div>
           <div className="start w-full px-[10px]">
-          <Instruction
-            subtitle="Challenge Server"
-            title="Challenge Server"
-            instructions={[
-                "You can register the challenge server: "
-                "https://coolcode-hacker-test-eada3c1b90fb.herokuapp.com/api/coolcodehackteam/<UserName>"
-            ]}
-          />
+              <Instruction
+                subtitle="Challenge Server"
+                title="Challenge Server"
+                instructions={[
+                    "You can register the challenge server"
+                    "https://coolcode-hacker-test-eada3c1b90fb.herokuapp.com/api/coolcodehackteam/<UserName>"
+                ]}
+              />
+          </div>
         </div>
           <div className="mission w-full px-[10px] flex sm:flex-row flex-col items-center gap-[30px]">
             <Instruction
