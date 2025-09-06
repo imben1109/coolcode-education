@@ -61,6 +61,7 @@ class WebSecurityConfig(
                         "/evaluate",
                         "/root/evaluate",
                         "/coolcodehack",
+                        "/coolcodehackteam/**",
                         "/root/coolcodehack",
                         "/root/**"
                         )
